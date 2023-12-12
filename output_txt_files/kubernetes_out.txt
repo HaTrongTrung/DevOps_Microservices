@@ -1,1 +1,44 @@
-<paste log output from Kubernetes-mediated prediction, here>
+(.devops) trungha@trunght1:~/Studying/DevOps_Microservices$ ./run_kubernetes.sh 
+pod/project4trunght created
+NAME              READY   STATUS              RESTARTS   AGE
+project4trunght   0/1     ContainerCreating   0          0s
+error: unable to forward port because pod is not running. Current status=Pending
+(.devops) trungha@trunght1:~/Studying/DevOps_Microservices$ kubectl get pods
+NAME              READY   STATUS              RESTARTS   AGE
+project4trunght   0/1     ContainerCreating   0          8s
+(.devops) trungha@trunght1:~/Studying/DevOps_Microservices$ kubectl get pods
+NAME              READY   STATUS              RESTARTS   AGE
+project4trunght   0/1     ContainerCreating   0          24s
+(.devops) trungha@trunght1:~/Studying/DevOps_Microservices$ kubectl get pods
+NAME              READY   STATUS    RESTARTS   AGE
+project4trunght   1/1     Running   0          51s
+(.devops) trungha@trunght1:~/Studying/DevOps_Microservices$ ./run_kubernetes.sh 
+Error from server (AlreadyExists): pods "project4trunght" already exists
+NAME              READY   STATUS    RESTARTS   AGE
+project4trunght   1/1     Running   0          53s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+
+
+
+trungha@trunght1:~/Studying/DevOps_Microservices$ kubectl logs project4trunght
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 320-998-064
+[2023-12-12 20:52:16,459] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2023-12-12 20:52:16,466] INFO in app: Inference payload DataFrame: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-12-12 20:52:16,470] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2023-12-12 20:52:16,471] INFO in app: output prediction: $[20.35373177134412]
+127.0.0.1 - - [12/Dec/2023 20:52:16] "POST /predict HTTP/1.1" 200 -
