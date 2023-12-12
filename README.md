@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/X1bxcaCbu4s9GR2zNSjFGs/5VJkDFPP5ysfZAm9rVeig1/tree/main.svg?style=svg&circle-token=857b3cd64552a036a642a2ba95e06ffbb75e81e9)](https://dl.circleci.com/status-badge/redirect/circleci/X1bxcaCbu4s9GR2zNSjFGs/5VJkDFPP5ysfZAm9rVeig1/tree/main)
 
 ## Project Overview
 
@@ -44,7 +44,9 @@ source .devops/bin/activate
 
 ### Kubernetes Steps
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+* Setup and Configure Docker locally: `./run_docker.sh`
+* Setup and Configure Kubernetes locally: `./run_kubernetes.sh`
+* Create Flask app in Container: `docker run -p 8000:80 project4trunght`
+* Run via kubectl: 
+  * `kubectl run project4trunght --image=hatrongtrung/project4trunght --port=80 --labels app=project4trunght`
+  * `kubectl port-forward project4trunght 8000:80`
